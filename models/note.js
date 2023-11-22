@@ -10,7 +10,7 @@ console.log('connecting to', url)
 
 mongoose.connect(url)
 
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch((error) => {
@@ -18,7 +18,11 @@ mongoose.connect(url)
   })
 
 const noteSchema = new mongoose.Schema({
-  content: String,
+  content: {
+    type: String,
+    minLength: 5,
+    required: true
+  },
   important: Boolean,
 })
 
